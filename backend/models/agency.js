@@ -38,7 +38,8 @@ const AgencySchema = new Schema({
         required : [true, "Please provide the Authorized person name"],
     },
     agencyType : {
-        type : String,
+        type : Schema.Types.ObjectId,
+        ref : "AgencyType"
         
     },
     agencyCode : {
@@ -51,6 +52,10 @@ const AgencySchema = new Schema({
         default : Date.now
     }
     
+})
+
+AgencySchema.pre("find", function(){
+    return this.populate("agencyType")
 })
 
 AgencySchema.pre("save", function(next){
@@ -75,7 +80,8 @@ AgencySchema.methods.generateJwtFromAgency = function(){
         agencyCode : this.agencyCode,
         email : this.email,
         companyName : this.companyName,
-        authorizedPerson : this.authorizedPerson
+        authorizedPerson : this.authorizedPerson,
+        agencyType : this.agencyType
     }
 
     const token = jwt.sign(payload, JWT_SECRET_KEY,{expiresIn:JWT_EXPIRE})

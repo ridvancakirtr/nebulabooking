@@ -3,8 +3,8 @@ async findAll() {
     return this.model.find()
 }
 
-async findAll(filter) {
-    return this.model.find(filter)
+async findAll(options={undefined}) {
+    return this.model.find(options.filter).populate(options.populate);
 }
 
 async add(item) {

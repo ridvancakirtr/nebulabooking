@@ -17,7 +17,8 @@ const sendJwtToClient = (agency, res)=>{
                     agencyCode : agency.agencyCode,
                     email : agency.email,
                     companyName : agency.companyName,
-                    authorizedPerson : agency.authorizedPerson
+                    authorizedPerson : agency.authorizedPerson,
+                    agencyType : agency.agencyType
                 }
             })
 

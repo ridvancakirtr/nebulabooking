@@ -9,9 +9,10 @@ const CruiseSchema = new Schema({
     description : {
         type: String
     },
-    ports : {
-        type : []
-    },
+    ports : [{
+        type : Schema.Types.ObjectId,
+        ref : "Port"
+    }],
     checkInDate : {
         type : Date,
         required : [true,"Please enter Check-in Date"]
@@ -31,4 +32,7 @@ const CruiseSchema = new Schema({
     }
 })
 
+// CruiseSchema.pre('find', function(){
+//     this.populate("vessel")
+// })
 module.exports = mongoose.model("Cruise", CruiseSchema)
