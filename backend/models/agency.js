@@ -10,7 +10,7 @@ const AgencySchema = new Schema({
         type : String,
         required : [true,"Please provide an email"],
         unique : [true,"Please try different email"],
-        match : [/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/, "Please provide an valid email address"]
+        match : [/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/, "Please provide a valid email address"]
     },
     password :{
         type : String,
@@ -72,7 +72,10 @@ AgencySchema.methods.generateJwtFromAgency = function(){
 
     const payload = {
         id : this._id,
-        agencyCode : this.agencyCode
+        agencyCode : this.agencyCode,
+        email : this.email,
+        companyName : this.companyName,
+        authorizedPerson : this.authorizedPerson
     }
 
     const token = jwt.sign(payload, JWT_SECRET_KEY,{expiresIn:JWT_EXPIRE})

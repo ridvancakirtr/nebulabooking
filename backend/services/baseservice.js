@@ -3,6 +3,10 @@ async findAll() {
     return this.model.find()
 }
 
+async findAll(filter) {
+    return this.model.find(filter)
+}
+
 async add(item) {
     return this.model.create(item)
 }

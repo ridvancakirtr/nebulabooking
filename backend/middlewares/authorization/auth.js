@@ -12,7 +12,16 @@ const getAccessToRoute = (req,res,next)=>{
     const accessToken = getAccessTokenFromHeader(req)
     jwt.verify(accessToken, JWT_SECRET_KEY,(err,decoded)=>{
         if(err){
+            console.log("&&" + accessToken + "&&")
             return next(new CustomError("You are not authorized to access", 401))
+    
+        }
+        req.agency ={
+            id : decoded.id,
+            agencyCode : decoded.agencyCode,
+            companyName : decoded.companyName,
+            email : decoded.email,
+            authorizedPerson : decoded.authorizedPerson
         }
         console.log(decoded);
         next();
