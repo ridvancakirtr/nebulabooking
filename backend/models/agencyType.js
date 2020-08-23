@@ -5,7 +5,7 @@ const Schema = mongoose.Schema;
 const AgencyTypeSchema = new Schema({
     name : {
         type : String,
-        required :[true, "Please provide a Port name"]
+        required :[true, "Please provide a Agency Type name"]
     },
     discountType : {
         type : String,

@@ -15,14 +15,18 @@ const login = asyncErrorWrapper( async (req,res,next) =>{
     if(!validateUserInput(agencyCode,password)) {
         return next(new CustomError("Please check your inputs",400));
     }
-    
-    const agency = await Agency.findOne({agencyCode}).select("+password");
+    const options = {
+         filter :{agencyCode},
+        populate : "agencyType",
+        select : 'password'
+    }
+    const agency = await AgencyService.findOneby(options);
 
     if ( !agency || !checkPassword(password,agency.password)) {
         
         return next(new CustomError("Please check your credentials",404));
     }
-
+    console.log(agency)
     sendJwtToClient(agency,res,200);
 
 }) 

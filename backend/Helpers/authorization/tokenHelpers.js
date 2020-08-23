@@ -3,6 +3,7 @@ const sendJwtToClient = (agency, res)=>{
     //GENERATE JWT
         const token = agency.generateJwtFromAgency();
         const {JWT_COOKIE,NODE_ENV} = process.env;
+        // console.log(agency)
         return res
             .status(200)
             .cookie("access_token", token,{

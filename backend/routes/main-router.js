@@ -9,6 +9,9 @@ const country = require('./country')
 const cruiseType = require('./cruise-type')
 const cruise = require('./cruise')
 const agencyType = require('./agency-type')
+const cabinCategorie = require("./cabin-categories")
+const bedType = require("./bed-type")
+const cabin = require("./cabin")
 //  /api
 
 router.use("/agency", agency);
@@ -19,5 +22,8 @@ router.use("/country", country)
 router.use("/cruiseType", cruiseType)
 router.use("/cruise",cruise)
 router.use("/agencytype", agencyType)
+router.use("/cabinCategories", cabinCategorie)
+router.use("/bedtype",bedType)
+router.use("/cabin", cabin)
 
 module.exports = router;

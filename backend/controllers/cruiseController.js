@@ -22,7 +22,7 @@ const getCruises = asyncErrorWrapper( async (req,res,next) =>{
 
     const options = {
         filter : null,
-        populate : ["ports", "vessel"]
+        populate : ["ports", "vessel", "cruiseType"]
     }
     const cruises = await cruiseService.findAll(options)
     res.json({
