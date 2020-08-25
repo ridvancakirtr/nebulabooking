@@ -8,6 +8,7 @@ const express = require('express');
 const connectDatabase = require('./Helpers/Database/connect-database');
 const routers = require("./routes/main-router");
 const customErrorHandler = require("./middlewares/errors/custom-error-handler");
+const moment = require("moment")
 
 //Enviroment variables
 dotenv.config({
@@ -21,9 +22,11 @@ const PORT = process.env.PORT;
 
 
 const app = express();
+//app.use(moment);
 app.use(morgan('combined'))
 app.use(bodyParser.json())
 app.use(cors())
+
 
 
 //ROUTES MIDDLEWARE

@@ -2,18 +2,24 @@ const asyncErrorWrapper = require("express-async-handler");
 const CustomError = require("../Helpers/error/CustomError");
 const cruiseService = require("../services/cruise-service");
 const cruise = require("../models/cruise")
+var moment = require("moment")
 
 const addCruise = asyncErrorWrapper( async (req,res,next) =>{
 
+    const cruise = req.body
+    cruise.checkInDate = moment(req.body.checkInDate, "DD-MM-YYYY hh:mm").format('LLL')
+    cruise.checkOutDate = moment(req.body.checkOutDate, "DD-MM-YYYY hh:mm").format('LLL')
 
-    const cruise = await cruiseService.add(req.body);
+    console.log(cruise)
+    const addedCruise = await cruiseService.add(cruise);
 
     //if(!cruise) return next(new CustomError("Country Couldn't add",400));
+    // console.log(req.body);
 
     res.json({
         success : true,
         message : "Cruise added succesfully",
-        data : cruise
+        data : [addedCruise]
     })    
 
 });
