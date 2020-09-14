@@ -3,7 +3,15 @@ const mongoose = require("mongoose");
 
 
 const connectDatabase = ()=>{
-    mongoose.connect(process.env.MONGO_URI, {useNewUrlParser:true, useUnifiedTopology: true, useCreateIndex:true})
+    let DB_URI = ''
+    if(process.env.NODE_ENV==='DEVELOPMENT')
+    {
+        DB_URI = process.env.MONGO_URI_DEV
+    }else{
+        DB_URI = process.env.MONGO_URI_PROD
+    }
+
+    mongoose.connect(DB_URI, {useNewUrlParser:true, useUnifiedTopology: true, useCreateIndex:true, useFindAndModify: false})
     .then(()=>{
         console.log("MongoDB Connection is Succesfull");
     })

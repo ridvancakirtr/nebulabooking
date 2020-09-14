@@ -30,7 +30,7 @@ const getPrices = asyncErrorWrapper( async (req,res,next) =>{
     console.log(req.params)
     const options = {
         filter : params,
-        populate : []
+        populate : ["vessel", "cabinCategory", "CruiseType"]
     }
     const prices = await priceService.findAll(options)
     res.json({

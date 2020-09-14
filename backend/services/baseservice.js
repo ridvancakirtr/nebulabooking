@@ -15,6 +15,10 @@ async add(item) {
     return this.model.create(item)
 }
 
+async update(id, item) {
+    return this.model.findOneAndUpdate({"_id" : id }, item, {new : true})
+}
+
 async  del(itemId) {
     return this.model.deleteOne({ _id: itemId })
 }

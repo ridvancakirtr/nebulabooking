@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-const { schema } = require('./agency');
 
 const Schema = mongoose.Schema;
 

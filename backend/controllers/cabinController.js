@@ -25,12 +25,26 @@ const getAllCabinsbyVessel = asyncErrorWrapper( async(req,res,next)=>{
     const cabins = await cabinService.findAll(options)
     res.json({
         success:true,
-        message : "All Cabin Categories",
+        message : "All Cabins",
         data : cabins
     })
-})
+});
+
+const updateCabin = asyncErrorWrapper( async(req,res,next)=>{
+
+    const updatedCabin= await cabinService.update(req.params.id, req.body)
+
+    if(!updatedCabin) return next(new CustomError("Cabin couldn't updated"),400)
+    res.json({
+        success : true,
+        message : "Cabin Updated Successfully",
+        data : updatedCabin
+    })
+
+});
 
 module.exports = {
     addCabin,
-    getAllCabinsbyVessel
+    getAllCabinsbyVessel,
+    updateCabin
 }

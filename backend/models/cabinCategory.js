@@ -7,6 +7,10 @@ const CabinCategorySchema = new Schema({
         type : String,
         required :[true, "Please provide a Cabin Category name"]
     },
+    description : {
+        type : String,
+        required :[true, "Please provide a Cabin Category Description"]
+    },
     vessel : {
         type : Schema.Types.ObjectId,
         ref : "Vessel"

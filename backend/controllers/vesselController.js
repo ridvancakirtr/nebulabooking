@@ -21,6 +21,46 @@ const addVessel = asyncErrorWrapper( async (req,res,next) =>{
 
 });
 
+const getVessels = asyncErrorWrapper(async (req,res,next)=>{
+    const vessels = await vesselService.findAll()
+
+    if(!vessels) return next(new CustomError("Vessels couldn't fetched"),400)
+    res.json({
+        success: true,
+        message : "Vessels fetched successfuly",
+        data : vessels
+    })
+});
+
+const getVessel = asyncErrorWrapper(async (req,res,next)=>{
+    const vessel = await vesselService.find(req.params.id)
+
+    if(!vessel) return next(new CustomError("Vessel couldn't fetched"),400)
+    res.json({
+        success: true,
+        message : "Vessel fetched successfuly",
+        data : vessel
+    })
+
+    console.log('getVessel calisti :::',vessel )
+
+});
+
+const updateVessel = asyncErrorWrapper(async(req,res,next)=>{
+    console.log(req.params.id)
+    const updatedVessel = await vesselService.update(req.params.id, req.body)
+
+    if(!updatedVessel) return next(new CustomError("Vessel couldn't updated"),400)
+    res.json({
+        success : true,
+        message : "Vessel Updated Successfully",
+        data : updatedVessel
+    })
+})
+
 module.exports = {
-    addVessel
+    addVessel,
+    getVessels,
+    updateVessel,
+    getVessel
 }

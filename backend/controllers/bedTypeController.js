@@ -14,6 +14,20 @@ const addBedType = asyncErrorWrapper( async(req,res,next)=>{
 
 });
 
+const updateBedType = asyncErrorWrapper( async(req,res,next)=>{
+
+    console.log("fsdfsdfs:", req.params.id)
+    const updatedbedtype = await bedTypeService.update(req.params.id, req.body)
+
+    if(!updatedbedtype) return next(new CustomError("BedType couldn't updated"),400)
+    res.json({
+        success : true,
+        message : "BedType Updated Successfully",
+        data : updatedbedtype
+    })
+
+});
+
 const getAllBedTypesByVessel = asyncErrorWrapper( async(req,res,next)=>{
 
     const vessel = req.params.vessel
@@ -21,8 +35,6 @@ const getAllBedTypesByVessel = asyncErrorWrapper( async(req,res,next)=>{
         filter :{vessel},
         populate : "vessel"
     }
-    console.log(req.params.vesselid)
-    console.log(options)
     const bedTypes = await bedTypeService.findAll(options)
     res.json({
         success:true,
@@ -33,5 +45,6 @@ const getAllBedTypesByVessel = asyncErrorWrapper( async(req,res,next)=>{
 
 module.exports = {
     addBedType,
-    getAllBedTypesByVessel
+    getAllBedTypesByVessel,
+    updateBedType
 }

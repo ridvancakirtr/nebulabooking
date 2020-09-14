@@ -14,6 +14,20 @@ const addCabinCategory = asyncErrorWrapper( async(req,res,next)=>{
 
 });
 
+const updateCabinCategory = asyncErrorWrapper( async(req,res,next)=>{
+
+    console.log("fsdfsdfs:", req.params.id)
+    const updatedCabinCategory = await cabinCategoryService.update(req.params.id, req.body)
+
+    if(!updatedCabinCategory) return next(new CustomError("Cabin Category couldn't updated"),400)
+    res.json({
+        success : true,
+        message : "Cabin Category Updated Successfully",
+        data : updatedCabinCategory
+    })
+
+});
+
 const getAllCabinCategoriesbyVessel = asyncErrorWrapper( async(req,res,next)=>{
 
     const vessel = req.params.vessel
@@ -32,5 +46,7 @@ const getAllCabinCategoriesbyVessel = asyncErrorWrapper( async(req,res,next)=>{
 
 module.exports = {
     addCabinCategory,
-    getAllCabinCategoriesbyVessel
+    getAllCabinCategoriesbyVessel,
+    updateCabinCategory
+    
 }

@@ -13,6 +13,7 @@ const cabinCategorie = require("./cabin-categories")
 const bedType = require("./bed-type")
 const cabin = require("./cabin")
 const price = require("./price")
+const passenger = require("./passenger")
 //  /api
 
 router.use("/agency", agency);
@@ -27,5 +28,6 @@ router.use("/cabinCategories", cabinCategorie)
 router.use("/bedtype",bedType)
 router.use("/cabin", cabin)
 router.use("/price", price)
+router.use("/passenger", passenger)
 
 module.exports = router;

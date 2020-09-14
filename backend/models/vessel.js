@@ -7,6 +7,10 @@ const VesselSchema = new Schema({
         type:String,
         required: [true,"Please provide a Vessel Name"]
     },
+    flag : {
+        type:String,
+        required: [true,"Please provide a Flag"]
+    }
     
 })
 
