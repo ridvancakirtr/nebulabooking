@@ -7,6 +7,6 @@ const ApiURI = ()=>{
     }
 }
 
-export default = {
+export default  {
     ApiURI
 }
