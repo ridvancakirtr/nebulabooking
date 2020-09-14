@@ -18,7 +18,7 @@ const passenger = require("./passenger")
 
 router.use("/agency", agency);
 router.use("/auth", auth);
-router.use("/vessel",vessel)
+router.use("/vessels",vessel)
 router.use("/port", port)
 router.use("/country", country)
 router.use("/cruiseType", cruiseType)
