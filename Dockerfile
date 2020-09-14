@@ -1,7 +1,7 @@
 FROM node:12.18.2
 
-WORKDIR /backend
-COPY . .
+WORKDIR /
+COPY backend .
 
 RUN npm install
 CMD npm run start
