@@ -7,7 +7,7 @@ const vesselService = require("../services/vessel-service");
 
 const addVessel = asyncErrorWrapper( async (req,res,next) =>{
 
-    const {name} = req.body;
+    //const {name} = req.body;
 
     const vessel = await vesselService.add(req.body);
 

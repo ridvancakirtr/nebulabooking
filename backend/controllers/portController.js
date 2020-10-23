@@ -6,7 +6,6 @@ const portService = require("../services/port-service");
 
 const addPort = asyncErrorWrapper( async (req,res,next) =>{
 
-
     const port = await portService.add(req.body);
 
     if(!port) return next(new CustomError("Port Couldn't add",400));
