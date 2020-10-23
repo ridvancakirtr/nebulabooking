@@ -32,7 +32,7 @@ const getPorts = asyncErrorWrapper( async (req,res,next) =>{
 
     const options = {
         filter :null,
-        populate : "country"
+        populate : ["country"]
     }
 
     const ports = await portService.findAll(options)
@@ -47,7 +47,7 @@ const getPorts = asyncErrorWrapper( async (req,res,next) =>{
 });
 
 const updatePort = asyncErrorWrapper(async(req,res,next)=>{
-    const updatedPort = await countryService.update(req.params.id, req.body)
+    const updatedPort = await portService.update(req.params.id, req.body)
 
     if(!updatedPort) return next(new CustomError("Port couldn't updated"),400)
     res.json({
