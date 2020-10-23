@@ -28,9 +28,34 @@ const getCountryPorts = asyncErrorWrapper( async (req,res,next) =>{
 
 });
 
+const getPorts = asyncErrorWrapper( async (req,res,next) =>{
+    const ports = await portService.findAll()
+
+    if(!ports) return next(new CustomError("Ports couldn't fetched"),400)
+    res.json({
+        success: true,
+        message : "Ports fetched successfuly",
+        data : ports
+    })
+
+});
+
+const updatePort = asyncErrorWrapper(async(req,res,next)=>{
+    const updatedPort = await countryService.update(req.params.id, req.body)
+
+    if(!updatedPort) return next(new CustomError("Port couldn't updated"),400)
+    res.json({
+        success : true,
+        message : "Port Updated Successfully",
+        data : updatedPort
+    })
+})
+
 
 
 module.exports = {
     addPort,
-    getCountryPorts
+    getCountryPorts,
+    getPorts,
+    updatePort
 }
