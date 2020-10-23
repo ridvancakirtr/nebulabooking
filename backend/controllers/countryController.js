@@ -26,7 +26,21 @@ const getCountries = asyncErrorWrapper(async (req,res,next)=>{
     })
 });
 
+
+const updateCountry = asyncErrorWrapper(async(req,res,next)=>{
+    console.log(req.params.id)
+    const updatedCountry = await countryService.update(req.params.id, req.body)
+
+    if(!updatedCountry) return next(new CustomError("Country couldn't updated"),400)
+    res.json({
+        success : true,
+        message : "Country Updated Successfully",
+        data : updatedCountry
+    })
+})
+
 module.exports = {
     addCountry,
-    getCountries
+    getCountries,
+    updateCountry
 }
