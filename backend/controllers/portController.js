@@ -29,7 +29,13 @@ const getCountryPorts = asyncErrorWrapper( async (req,res,next) =>{
 });
 
 const getPorts = asyncErrorWrapper( async (req,res,next) =>{
-    const ports = await portService.findAll()
+
+    const options = {
+        filter :null,
+        populate : "country"
+    }
+
+    const ports = await portService.findAll(options)
 
     if(!ports) return next(new CustomError("Ports couldn't fetched"),400)
     res.json({
