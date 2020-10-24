@@ -18,6 +18,31 @@ const addCruiseType = asyncErrorWrapper( async (req,res,next) =>{
 
 });
 
+const getCruiseTypes = asyncErrorWrapper(async (req,res,next)=>{
+    const cruiseTypes = await cruiseTypeService.findAll()
+
+    if(!cruiseTypes) return next(new CustomError("Cruise Types couldn't fetched"),400)
+    res.json({
+        success: true,
+        message : "Cruise Types fetched successfuly",
+        data : cruiseTypes
+    })
+});
+
+
+const updateCruiseType = asyncErrorWrapper(async(req,res,next)=>{
+    const updatedCruiseType = await cruiseTypeService.update(req.params.id, req.body)
+
+    if(!updatedCruiseType) return next(new CustomError("Cruise Type couldn't updated"),400)
+    res.json({
+        success : true,
+        message : "Cruise Type Updated Successfully",
+        data : updatedCruiseType
+    })
+})
+
 module.exports = {
-    addCruiseType
+    addCruiseType,
+    getCruiseTypes,
+    updateCruiseType
 }
