@@ -26,6 +26,10 @@ const CruiseSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref : "CruiseType"
     },
+    season : {
+        type: Schema.Types.ObjectId,
+        ref : "Season"
+    },
     vessel : {
         type : Schema.Types.ObjectId,
         ref : "Vessel"
