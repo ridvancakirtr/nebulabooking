@@ -10,4 +10,4 @@ const SeasonSchema = new Schema({
     
 })
 
-module.exports = mongoose.model("Season",VesselSchema)
+module.exports = mongoose.model("Season",SeasonSchema)

@@ -7,4 +7,4 @@ class SeasonService extends BaseService {
     model = SeasonModel 
 }
 
-module.exports = new VesselService();
+module.exports = new SeasonService();
