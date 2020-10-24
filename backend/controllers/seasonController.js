@@ -16,7 +16,7 @@ const addSeason = asyncErrorWrapper( async (req,res,next) =>{
     res.json({
         success : true,
         message : "Season added succesfully",
-        data : vessel
+        data : season
     })    
 
 });
