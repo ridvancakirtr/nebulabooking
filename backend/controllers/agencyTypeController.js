@@ -17,6 +17,19 @@ const addAgencyType = asyncErrorWrapper( async (req,res,next) =>{
 
 });
 
+const updateAgencyType = asyncErrorWrapper( async(req,res,next)=>{
+
+    const updatedAgencyType = await AgencyTypeService.update(req.params.id, req.body)
+
+    if(!updatedAgencyType) return next(new CustomError("Agency Type couldn't updated"),400)
+    res.json({
+        success : true,
+        message : "Agency Type Successfully",
+        data : updatedAgencyType
+    })
+
+});
+
 const getAll = asyncErrorWrapper( async (req,res,next) =>{
 
     const agencyTypes = await AgencyTypeService.findAll();
@@ -30,5 +43,6 @@ const getAll = asyncErrorWrapper( async (req,res,next) =>{
 
 module.exports = {
     addAgencyType,
-    getAll
+    getAll,
+    updateAgencyType
 }

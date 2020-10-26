@@ -16,7 +16,6 @@ const addBedType = asyncErrorWrapper( async(req,res,next)=>{
 
 const updateBedType = asyncErrorWrapper( async(req,res,next)=>{
 
-    console.log("fsdfsdfs:", req.params.id)
     const updatedbedtype = await bedTypeService.update(req.params.id, req.body)
 
     if(!updatedbedtype) return next(new CustomError("BedType couldn't updated"),400)

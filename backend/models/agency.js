@@ -40,7 +40,6 @@ const AgencySchema = new Schema({
     agencyType : {
         type : Schema.Types.ObjectId,
         ref : "AgencyType"
-        
     },
     agencyCode : {
         type:String,

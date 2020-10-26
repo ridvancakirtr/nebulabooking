@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const {createAgency, tokentest} = require("../controllers/agencyController")
+const {createAgency, updateAgency , getAllAgencies, tokentest} = require("../controllers/agencyController")
 const {getAccessToRoute} = require("../middlewares/authorization/auth");
 
 router.get("/tokentest",getAccessToRoute, tokentest)
@@ -13,11 +13,7 @@ router.get("/", (req,res)=>{
 })
 
 // api/agency/all
-router.get("/all",(req,res)=>{
-    res.json({
-        message : "Get All Agency"
-    })
-})
+router.get("/all",getAllAgencies)
 
 // api/agency/id
 router.get("/:id",(req,res)=>{
@@ -29,11 +25,7 @@ router.get("/:id",(req,res)=>{
 // api/agency/create
 router.post("/create", createAgency)
 
-router.put("/update/:id",(req,res)=>{
-    res.json({
-        message: " Update Agency"
-    })
-})
+router.put("/update/:id", updateAgency)
 
 router.delete("/delete/:id",(req,res)=>{
     res.json({
