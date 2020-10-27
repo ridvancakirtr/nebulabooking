@@ -19,7 +19,26 @@ const addCruiseType = asyncErrorWrapper( async (req,res,next) =>{
 });
 
 const getCruiseTypes = asyncErrorWrapper(async (req,res,next)=>{
+
+    
     const cruiseTypes = await cruiseTypeService.findAll()
+
+    if(!cruiseTypes) return next(new CustomError("Cruise Types couldn't fetched"),400)
+    res.json({
+        success: true,
+        message : "Cruise Types fetched successfuly",
+        data : cruiseTypes
+    })
+});
+
+const getCruiseTypesbyVessel = asyncErrorWrapper(async (req,res,next)=>{
+
+    const vessel = req.params.vessel
+    const options = {
+        filter : {vessel},
+        populate : ["vessel"]
+    }
+    const cruiseTypes = await cruiseTypeService.findAll(options)
 
     if(!cruiseTypes) return next(new CustomError("Cruise Types couldn't fetched"),400)
     res.json({
@@ -44,5 +63,6 @@ const updateCruiseType = asyncErrorWrapper(async(req,res,next)=>{
 module.exports = {
     addCruiseType,
     getCruiseTypes,
-    updateCruiseType
+    updateCruiseType,
+    getCruiseTypesbyVessel
 }

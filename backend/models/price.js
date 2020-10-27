@@ -18,6 +18,10 @@ const PriceSchema = new Schema({
     vessel : {
         type : Schema.Types.ObjectId,
         ref : "Vessel"
+    },
+    season : {
+        type : Schema.Types.ObjectId,
+        ref : "Season"
     }
 })
 

@@ -6,6 +6,10 @@ const CruiseTypeSchema = new Schema({
     name : {
         type : String,
         required : [true,"Please enter the Cruise Type Name"]
+    },
+    vessel : {
+        type: Schema.Types.ObjectId,
+        ref : "Vessel"
     }
 })
 
