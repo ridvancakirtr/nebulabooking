@@ -20,8 +20,11 @@ const addCruiseType = asyncErrorWrapper( async (req,res,next) =>{
 
 const getCruiseTypes = asyncErrorWrapper(async (req,res,next)=>{
 
-    
-    const cruiseTypes = await cruiseTypeService.findAll()
+    const options = {
+        filter : null,
+        populate : ["vessel"]
+    }
+    const cruiseTypes = await cruiseTypeService.findAll(options)
 
     if(!cruiseTypes) return next(new CustomError("Cruise Types couldn't fetched"),400)
     res.json({
