@@ -7,7 +7,7 @@ const PriceSchema = new Schema({
         type : Number,
         required :[true, "Please provide a Price"]
     },
-    CruiseType : {
+    cruiseType : {
         type : Schema.Types.ObjectId,
         ref : "CruiseType"
     },
@@ -22,6 +22,10 @@ const PriceSchema = new Schema({
     season : {
         type : Schema.Types.ObjectId,
         ref : "Season"
+    },
+    market : {
+        type : Schema.Types.ObjectId,
+        ref : "Market"
     }
 })
 
