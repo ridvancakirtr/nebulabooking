@@ -58,9 +58,9 @@ const AgencySchema = new Schema({
     
 })
 
-AgencySchema.pre("find", function(){
-    return this.populate("AgencyType")
-})
+// AgencySchema.pre("find", function(){
+//     return this.populate("AgencyType")
+// })
 
 AgencySchema.pre("save", function(next){
     bcrypt.genSalt(10, (err,salt)=>{

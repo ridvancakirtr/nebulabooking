@@ -35,15 +35,14 @@ const updateAgency = asyncErrorWrapper( async(req,res,next)=>{
 
 const getAllAgencies = asyncErrorWrapper( async(req,res,next)=>{
 
-    // const vessel = req.params.vessel
-    // const options = {
-    //     filter :{vessel},
-    //     populate : "vessel"
-    // }
-    const agencies = await AgencyService.findAll()
+    const options = {
+        filter : null,
+        populate : ["agencyType"]
+    }
+    const agencies = await AgencyService.findAll(options)
     res.json({
         success:true,
-        message : "All Bed Types",
+        message : "All Agencies",
         data : agencies
     })
 })
