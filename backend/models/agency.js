@@ -30,7 +30,10 @@ const AgencySchema = new Schema({
         maxlength : [400,"Company adddress length over (400) character limit"],
         required : [false, "Please provide the company adddress"],
     },
-
+    phone : {
+        type: String,
+        required : [true, "Please provide a phone number"]
+    },
     authorizedPerson : {
         type : String,
         minlength : [3, "Authorized person name lenght can't be less than 3 character"],
