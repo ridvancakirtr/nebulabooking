@@ -9,14 +9,13 @@ const CruiseSchema = new Schema({
     description : {
         type: String
     },
-    ports : [{
+    schedule : [{
         type : Schema.Types.ObjectId,
-        ref : "Port"
+        ref : "ScheduleItem"
     }],
     checkInDate : {
         type : Date,
         required : [true,"Please enter Check-in Date"]
-
     },
     checkOutDate : {
         type : Date,

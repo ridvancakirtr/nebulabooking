@@ -30,7 +30,6 @@ const CabinSchema = new Schema({
         type : Schema.Types.ObjectId,
         ref : "Vessel",
         required : [true,"Please select a Vessel"]
-
     }
 })
 
