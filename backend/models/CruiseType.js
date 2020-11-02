@@ -10,6 +10,10 @@ const CruiseTypeSchema = new Schema({
     vessel : {
         type: Schema.Types.ObjectId,
         ref : "Vessel"
+    },
+    tax : {
+        type : Number,
+        required : [true, "Please enter tax amount"]
     }
 })
 

@@ -44,6 +44,10 @@ const AgencySchema = new Schema({
         type : Schema.Types.ObjectId,
         ref : "AgencyType"
     },
+    market : {
+        type : Schema.Types.ObjectId,
+        ref : "Market"
+    },
     agencyDiscountType : {
         type : String,
         enum : ['Flat Rate', 'Percentage'],
