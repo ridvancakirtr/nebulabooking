@@ -7,8 +7,8 @@ var moment = require("moment")
 const addCruise = asyncErrorWrapper( async (req,res,next) =>{
 
     const cruise = req.body
-    cruise.checkInDate = moment(req.body.checkInDate, "DD-MM-YYYY hh:mm").format('LLL')
-    cruise.checkOutDate = moment(req.body.checkOutDate, "DD-MM-YYYY hh:mm").format('LLL')
+    // cruise.checkInDate = moment(req.body.checkInDate, "DD-MM-YYYY hh:mm").format('LLL')
+    // cruise.checkOutDate = moment(req.body.checkOutDate, "DD-MM-YYYY hh:mm").format('LLL')
 
     console.log(cruise)
     const addedCruise = await cruiseService.add(cruise);
@@ -24,11 +24,24 @@ const addCruise = asyncErrorWrapper( async (req,res,next) =>{
 
 });
 
+const updateCruise = asyncErrorWrapper( async(req,res,next)=>{
+
+    const updatedCruise= await cruiseService.update(req.params.id, req.body)
+
+    if(!updatedCruise) return next(new CustomError("Cruise couldn't updated"),400)
+    res.json({
+        success : true,
+        message : "Cruise Updated Successfully",
+        data : updatedCruise
+    })
+
+});
+
 const getCruises = asyncErrorWrapper( async (req,res,next) =>{
 
     const options = {
         filter : null,
-        populate : ["ports", "vessel", "cruiseType"]
+        populate : ["ports", "vessel", "cruiseType", "season", "schedule.port"]
     }
     const cruises = await cruiseService.findAll(options)
     res.json({
@@ -40,5 +53,6 @@ const getCruises = asyncErrorWrapper( async (req,res,next) =>{
 
 module.exports = {
     addCruise,
-    getCruises
+    getCruises,
+    updateCruise
 }

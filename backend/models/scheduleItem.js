@@ -16,7 +16,7 @@ const ScheduleItemSchema = new Schema({
         type : String
     },
     departureTime : {
-        type:String
+        type: String
     }
 })
 
