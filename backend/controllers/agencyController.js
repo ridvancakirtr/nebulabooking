@@ -37,7 +37,7 @@ const getAllAgencies = asyncErrorWrapper( async(req,res,next)=>{
 
     const options = {
         filter : null,
-        populate : ["agencyType"]
+        populate : ["agencyType", "market"]
     }
     const agencies = await AgencyService.findAll(options)
     res.json({
