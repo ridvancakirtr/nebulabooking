@@ -6,7 +6,12 @@ const AgencyTypeSchema = new Schema({
     name : {
         type : String,
         required :[true, "Please provide a Agency Type name"]
+    },
+    discount : {
+        type : Number,
+        required : [true, "Please enter discount rate"]
     }
+
     // discountType : {
     //     type : String,
     //     enum : ["Flat","Percentage"]
