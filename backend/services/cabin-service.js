@@ -23,7 +23,7 @@ class CabinService extends BaseService {
         });
         
             console.log(options.filter)
-        return await this.model.find({_id : {$nin : blockCabins}, 'vessel' : options.cruise.vessel, 'cabinCategory' : options.cabinCategory })
+        return await this.model.find({_id : {$nin : blockCabins}, 'vessel' : options.cruise.vessel, 'cabinCategory' : options.cabinCategory }).populate(options.populate)
     }
 }
 
