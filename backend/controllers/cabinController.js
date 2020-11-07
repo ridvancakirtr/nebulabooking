@@ -1,6 +1,9 @@
 const asyncErrorWrapper = require("express-async-handler");
 const CustomError = require("../Helpers/error/CustomError");
 const cabinService = require("../services/cabin-service")
+const cruiseService = require("../services/cruise-service")
+const cabinCategoryService = require("../services/cabin-categories")
+
 
 const addCabin = asyncErrorWrapper( async(req,res,next)=>{
 
@@ -30,6 +33,52 @@ const getAllCabinsbyVessel = asyncErrorWrapper( async(req,res,next)=>{
     })
 });
 
+const getAllAvailableCabins = asyncErrorWrapper (async (req,res,next)=>{
+    const cruiseid = req.params.cruise
+    const cruise = await cruiseService.find(cruiseid)
+    const cabinCategoryId = req.params.cabinCategoryId
+    const cabinCategory = await cabinCategoryService.find(cabinCategoryId)
+    const options = {
+        populate : ["vessel", "bedType", "cabinCategory"],
+        cruise : cruise,
+        cabinCategory : cabinCategory
+
+    }
+
+    const cabins = await cabinService.findAvailableCabins(options)
+
+    res.json({
+        success : true,
+        message : "Available cabins fetched for selected cruise",
+        arrayLength : cabins.length,
+        data : cabins
+    })
+})
+
+const getAvailableCabinsBycabinCategory = asyncErrorWrapper(async (req,res,next)=>{
+        const cruiseid = req.params.cruise
+        const cruise = await cruiseService.find(cruiseid)
+        const cabinCategoryId = req.params.cabinCategory
+        const cabinCategory = await cabinCategoryService.find(cabinCategoryId)
+        const options = {
+            populate : ["vessel", "bedType", "cabinCategory"],
+            cruise : cruise,
+            cabinCategory : cabinCategory
+    
+        }
+    
+        const cabins = await cabinService.findAvailableCabinsByCabinCategory(options)
+        
+        console.log(options)
+        res.json({
+            success : true,
+            message : "Available cabins fetched for selected cruise",
+            arrayLength : cabins.length,
+            data : cabins
+        })
+    }
+)
+
 const updateCabin = asyncErrorWrapper( async(req,res,next)=>{
 
     const updatedCabin= await cabinService.update(req.params.id, req.body)
@@ -46,5 +95,7 @@ const updateCabin = asyncErrorWrapper( async(req,res,next)=>{
 module.exports = {
     addCabin,
     getAllCabinsbyVessel,
-    updateCabin
+    updateCabin,
+    getAllAvailableCabins,
+    getAvailableCabinsBycabinCategory
 }

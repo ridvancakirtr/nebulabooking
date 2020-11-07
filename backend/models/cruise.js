@@ -20,6 +20,28 @@ const ScheduleItemSchema = new Schema({
     }
 })
 
+const BlockedCabinSchema = new Schema({
+    cabin : {
+        type: Schema.Types.ObjectId,
+        required : [true, "Please provide a cabin"],
+        ref : "Cabin"
+    },
+    blockedFor : {
+        type:Schema.Types.ObjectId,
+        ref : "Agency",
+        required : [true, "Please provide a Agency"]
+    },
+    blockReason : {
+        type : String,
+        enum : ['OnProcess', 'Sold', 'Payment Pending', 'Reserved'],
+    },
+    blockedUntil : {
+        type : Date,
+        required : [true, "Provide a date"]
+    }
+
+})
+
 const CruiseSchema = new Schema({
     name : {
         type : String
@@ -47,7 +69,8 @@ const CruiseSchema = new Schema({
     vessel : {
         type : Schema.Types.ObjectId,
         ref : "Vessel"
-    }
+    },
+    blockedCabins : [BlockedCabinSchema]
 })
 
 
