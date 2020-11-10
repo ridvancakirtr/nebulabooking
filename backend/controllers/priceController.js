@@ -44,7 +44,33 @@ const getPrices = asyncErrorWrapper( async (req,res,next) =>{
     console.log(res)
 });
 
+const updatePrice = asyncErrorWrapper (async (req, res, next) => {
+    const updatedPrice= await priceService.update(req.params.price, req.body)
+
+    if(!updatedPrice) return next(new CustomError("Price couldn't updated"),400)
+    res.json({
+        success : true,
+        message : "Price Updated Successfully",
+        data : updatedPrice
+    })
+})
+
+const deletePrice = asyncErrorWrapper (async (req,res,next)=> {
+
+    const deletedPrice = await priceService.del(req.params.price)
+    if(!deletedPrice) return next(new CustomError("Price couldn't deleted"),400)
+
+    res.json({
+        success : true,
+        message : "Price deleted Successfully",
+        data : deletedPrice
+    })
+
+    
+})
 module.exports = {
     addPrice,
-    getPrices
+    getPrices,
+    updatePrice,
+    deletePrice
 }
