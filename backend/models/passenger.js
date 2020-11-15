@@ -23,10 +23,6 @@ const PassengerSchema = new Schema({
         type : String,
         required : [true,"Please enter International ID Number"]
     },
-    passportIssueDate : {
-        type : Date,
-        required : [true, "Please enter PASSPORT ISSUE DATE"]
-    },
     passportExpiryDate : {
         type : Date,
         required : [true, "Please enter PASSPORT EXPIRY DATE"]

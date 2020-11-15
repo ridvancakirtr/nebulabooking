@@ -9,14 +9,13 @@ const CustomError = require("../Helpers/error/CustomError")
 //login
 
 const login = asyncErrorWrapper( async (req,res,next) =>{
-
     const {agencyCode, password} = req.body;
     
     if(!validateUserInput(agencyCode,password)) {
         return next(new CustomError("Please check your inputs",400));
     }
     const options = {
-         filter :{agencyCode},
+        filter :{agencyCode},
         populate : "agencyType",
         select : 'password'
     }
@@ -26,7 +25,6 @@ const login = asyncErrorWrapper( async (req,res,next) =>{
         
         return next(new CustomError("Please check your credentials",404));
     }
-    console.log(agency)
     sendJwtToClient(agency,res,200);
 
 }) 

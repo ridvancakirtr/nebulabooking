@@ -9,10 +9,11 @@ const sendJwtToClient = (agency, res)=>{
             .cookie("access_token", token,{
                 httpOnly : true,
                 expires : new Date(Date.now() + parseInt(JWT_COOKIE)*1000*60),
-                secure : NODE_ENV==="DEVELOPMENT" ? false : true
+                //secure : NODE_ENV==="DEVELOPMENT" ? false : true
             })
             .json({
                 success : true,
+                message : 'Agency Logged-in Successfully',
                 access_token : token,
                 data :{
                     agencyCode : agency.agencyCode,
@@ -23,7 +24,7 @@ const sendJwtToClient = (agency, res)=>{
                 }
             })
 
-    //
+    
 };
 
 const isTokenIncluded = (req)=>{

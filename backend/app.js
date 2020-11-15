@@ -25,7 +25,10 @@ const app = express();
 //app.use(moment);
 app.use(morgan('combined'))
 app.use(bodyParser.json())
-app.use(cors())
+app.use(cors({
+    origin: ['http://localhost:8080','https://nebula-booking-api.herokuapp.com/'],
+    credentials : true
+}))
 
 
 

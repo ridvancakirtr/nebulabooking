@@ -11,7 +11,6 @@ const VesselSchema = new Schema({
         type:String,
         required: [true,"Please provide a Flag"]
     }
-    
 })
 
 module.exports = mongoose.model("Vessel",VesselSchema)
