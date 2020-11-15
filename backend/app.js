@@ -29,18 +29,10 @@ app.use(bodyParser.json())
 //CORS 
 
 var whitelist = ['http://localhost:8080', 'https://nebula-booking-vue.herokuapp.com']
-var corsOptions = {
-  origin: function (origin, callback) {
-    if (whitelist.indexOf(origin) !== -1) {
-      callback(null, true)
-    } else {
-      callback(new Error('Not allowed by CORS'))
-    }
-  }
-}
+
 app.use(cors({
-    corsOptions,
-    credentials : true
+    origin : whitelist[1],
+    credentials : true,
 }))
 
 
