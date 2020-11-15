@@ -25,8 +25,21 @@ const app = express();
 //app.use(moment);
 app.use(morgan('combined'))
 app.use(bodyParser.json())
+
+//CORS 
+
+var whitelist = ['http://localhost:8080', 'https://nebula-booking-vue.herokuapp.com']
+var corsOptions = {
+  origin: function (origin, callback) {
+    if (whitelist.indexOf(origin) !== -1) {
+      callback(null, true)
+    } else {
+      callback(new Error('Not allowed by CORS'))
+    }
+  }
+}
 app.use(cors({
-    origin: 'https://nebula-booking-vue.herokuapp.com/',
+    corsOptions,
     credentials : true
 }))
 
