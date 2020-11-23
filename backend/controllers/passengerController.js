@@ -10,12 +10,10 @@ const addPassenger = asyncErrorWrapper( async (req,res,next) =>{
     passenger.Dob = moment(req.body.Dob, "DD-MM-YYYY hh:mm").format('LLL')
     passenger.passportIssueDate = moment(req.body.passportIssueDate, "DD-MM-YYYY hh:mm").format('LLL')
     passenger.passportExpiryDate = moment(req.body.passportExpiryDate, "DD-MM-YYYY hh:mm").format('LLL')
-    console.log(passenger)
 
     const addedPassenger = await passengerService.add(passenger);
 
     //if(!cruise) return next(new CustomError("Country Couldn't add",400));
-    // console.log(req.body);
 
     res.json({
         success : true,

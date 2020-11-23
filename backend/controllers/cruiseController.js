@@ -10,11 +10,9 @@ const addCruise = asyncErrorWrapper( async (req,res,next) =>{
     // cruise.checkInDate = moment(req.body.checkInDate, "DD-MM-YYYY hh:mm").format('LLL')
     // cruise.checkOutDate = moment(req.body.checkOutDate, "DD-MM-YYYY hh:mm").format('LLL')
 
-    console.log(cruise)
     const addedCruise = await cruiseService.add(cruise);
 
     //if(!cruise) return next(new CustomError("Country Couldn't add",400));
-    // console.log(req.body);
 
     res.json({
         success : true,

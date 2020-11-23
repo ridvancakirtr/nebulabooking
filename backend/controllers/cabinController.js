@@ -24,7 +24,6 @@ const getAllCabinsbyVessel = asyncErrorWrapper( async(req,res,next)=>{
         filter : {vessel},
         populate : ["vessel", "bedType", "cabinCategory"]
     }
-    console.log(vessel)
     const cabins = await cabinService.findAll(options)
     res.json({
         success:true,
@@ -69,7 +68,6 @@ const getAvailableCabinsBycabinCategory = asyncErrorWrapper(async (req,res,next)
     
         const cabins = await cabinService.findAvailableCabinsByCabinCategory(options)
         
-        console.log(options)
         res.json({
             success : true,
             message : "Available cabins fetched for selected cruise",

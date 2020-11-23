@@ -12,7 +12,6 @@ class CabinService extends BaseService {
         options.cruise.blockedCabins.forEach(element => {
             blockCabins.push(element.cabin)
         });
-        console.log(options.filter)
         return await this.model.find({_id : {$nin : blockCabins}, 'vessel' : options.cruise.vessel}).populate(options.populate)
     }
 
@@ -22,7 +21,6 @@ class CabinService extends BaseService {
             blockCabins.push(element.cabin)
         });
         
-            console.log(options.filter)
         return await this.model.find({_id : {$nin : blockCabins}, 'vessel' : options.cruise.vessel, 'cabinCategory' : options.cabinCategory }).populate(options.populate)
     }
 }

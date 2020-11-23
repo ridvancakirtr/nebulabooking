@@ -17,21 +17,23 @@ const passenger = require("./passenger")
 const season = require("./season")
 const market = require("./market")
 //  /api
+const {getAccessToRoute} = require("../middlewares/authorization/auth")
 
-router.use("/agency", agency);
+
+router.use("/agency",getAccessToRoute, agency);
 router.use("/auth", auth);
-router.use("/vessel",vessel)
-router.use("/port", port)
-router.use("/country", country)
-router.use("/cruiseType", cruiseType)
-router.use("/cruise",cruise)
-router.use("/agencytype", agencyType)
-router.use("/cabinCategories", cabinCategorie)
-router.use("/bedtype",bedType)
-router.use("/cabin", cabin)
-router.use("/price", price)
-router.use("/passenger", passenger)
-router.use("/season", season)
-router.use("/market", market)
+router.use("/vessel",getAccessToRoute,vessel)
+router.use("/port",getAccessToRoute, port)
+router.use("/country",getAccessToRoute, country)
+router.use("/cruiseType",getAccessToRoute, cruiseType)
+router.use("/cruise",getAccessToRoute,cruise)
+router.use("/agencytype",getAccessToRoute, agencyType)
+router.use("/cabinCategories",getAccessToRoute, cabinCategorie)
+router.use("/bedtype",getAccessToRoute,bedType)
+router.use("/cabin",getAccessToRoute, cabin)
+router.use("/price",getAccessToRoute, price)
+router.use("/passenger",getAccessToRoute, passenger)
+router.use("/season",getAccessToRoute, season)
+router.use("/market", getAccessToRoute,market)
 
 module.exports = router;

@@ -57,6 +57,9 @@ const AgencySchema = new Schema({
         type:String,
         unique : [true, "Please try again"]
     },
+    role : {
+        type : String,
+    },
 
     createdAt : {
         type:Date,

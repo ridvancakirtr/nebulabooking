@@ -3,7 +3,6 @@ const asyncErrorWrapper = require("express-async-handler");
 const CustomError = require("../Helpers/error/CustomError");
 const portService = require("../services/port-service");
 
-
 const addPort = asyncErrorWrapper( async (req,res,next) =>{
 
     const port = await portService.add(req.body);
@@ -20,7 +19,6 @@ const addPort = asyncErrorWrapper( async (req,res,next) =>{
 
 const getCountryPorts = asyncErrorWrapper( async (req,res,next) =>{
     const ports = await portService.findAll({ "country" : req.params.countryId })
-    console.log("paramsssss", req.params.countryId)
     res.json({
         success: true,
         data : ports

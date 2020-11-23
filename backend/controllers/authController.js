@@ -26,7 +26,6 @@ const login = asyncErrorWrapper( async (req,res,next) =>{
         return next(new CustomError("Please check your credentials",404));
     }
     sendJwtToClient(agency,res,200);
-
 }) 
 
 const validateUserInput = (agencyCode,password) => agencyCode && password;

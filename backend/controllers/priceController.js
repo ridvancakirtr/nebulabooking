@@ -7,7 +7,6 @@ var moment = require("moment")
 const addPrice = asyncErrorWrapper( async (req,res,next) =>{
 
     const price = req.body
-    console.log(req.body)
     const addedPrice = await priceService.add(price);
 
     if(!addedPrice) return next(new CustomError("Price Couldn't add",400));
@@ -28,7 +27,6 @@ const getPrices = asyncErrorWrapper( async (req,res,next) =>{
         market : req.params.market,
         season : req.params.season
     } 
-    // console.log(req.params)
     const options = {
         filter : params,
         populate : ["vessel", "cabinCategory", "cruiseType", "market", "season"]
@@ -41,7 +39,6 @@ const getPrices = asyncErrorWrapper( async (req,res,next) =>{
         data : prices
     })
 
-    console.log(res)
 });
 
 const updatePrice = asyncErrorWrapper (async (req, res, next) => {

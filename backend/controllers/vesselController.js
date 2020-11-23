@@ -42,12 +42,10 @@ const getVessel = asyncErrorWrapper(async (req,res,next)=>{
         data : vessel
     })
 
-    console.log('getVessel calisti :::',vessel )
 
 });
 
 const updateVessel = asyncErrorWrapper(async(req,res,next)=>{
-    console.log(req.params.id)
     const updatedVessel = await vesselService.update(req.params.id, req.body)
 
     if(!updatedVessel) return next(new CustomError("Vessel couldn't updated"),400)
