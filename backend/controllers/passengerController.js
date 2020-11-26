@@ -20,27 +20,46 @@ const addPassenger = asyncErrorWrapper( async (req,res,next) =>{
         message : "Passenger added succesfully",
         data : [addedPassenger]
     })    
-
 });
 
-const getPassengersByBooking = asyncErrorWrapper( async (req,res,next) =>{
 
-    const params = {
-        booking : req.params.bookingid,
-    } 
+const getPassenger = asyncErrorWrapper ( async (req,res,next)=> {
+    const {passportNo} = req.body
     const options = {
-        filter : params,
+
+        filter : {passportNo},
         populate : []
     }
-    const passengers = await passengerService.findAll(options)
+    
+    const passenger = await passengerService.findAll(options)
+
+    if (!passenger) return next(CustomError("Passenger Could't find"), 400)
+
     res.json({
-        success:true,
-        message : "passengers fetched",
-        data : passengers
+        success : true,
+        message : "Succesfull",
+        data : passenger[0]
     })
-});
+})
+
+// const getPassengersByBooking = asyncErrorWrapper( async (req,res,next) =>{
+
+//     const params = {
+//         booking : req.params.bookingid,
+//     } 
+//     const options = {
+//         filter : params,
+//         populate : []
+//     }
+//     const passengers = await passengerService.findAll(options)
+//     res.json({
+//         success:true,
+//         message : "passengers fetched",
+//         data : passengers
+//     })
+// });
 
 module.exports = {
     addPassenger,
-    getPassengersByBooking
+    getPassenger
 }
